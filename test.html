@@ -1,0 +1,32 @@
+
+{% extends 'home.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Fichiers - Gestion de Dossiers Criminels</title>
+</head>
+<body>
+    <p><a href="{% url 'ajouter_fichier' %}">Ajouter un Fichier</a></p>
+    <p><a href="{% url 'home' %}">Accueil</a></p>
+    <h1>Liste des Fichiers</h1>
+    <ul>
+    {% for fichier in fichiers %}
+        <li>
+            {{ fichier.nom }} - 
+            <a href="{{ fichier.fichier.url }}">Télécharger</a> - 
+            <a href="{% url 'modifier_fichier' fichier.id %}">Modifier</a> -
+            <a href="{% url 'supprimer_fichier' fichier.id %}">Supprimer</a>
+        </li>
+    {% empty %}
+        <li>Aucun fichier trouvé.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>  
+    {% endif %}
+{% endblock %}
+
+
